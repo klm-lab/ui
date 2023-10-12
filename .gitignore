@@ -1,0 +1,10 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+.idea
+node_modules
+lib
+temp
+coverage
