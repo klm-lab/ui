@@ -1,5 +1,6 @@
 interface ColorPickerProps {
-    title?: string;
+    height?: number;
+    width?: number
 }
 
 export type {ColorPickerProps}
