@@ -15,8 +15,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Picker: Story = {
   args: {
-    title: "o"
-    // primary: true,
-    // label: 'Button',
+    // height: 600,
+    // width: 600
   }
 };
