@@ -19,6 +19,10 @@ const drawGradient = (ctx: CanvasRenderingContext2D,
                       color: string, x: number, y: number, width: number, height: number,
                       horizontal: boolean
 ) => {
+  const test = document.getElementById("test");
+  if (test) {
+    test.style.backgroundColor = color;
+  }
   const whiteGrd = ctx.createLinearGradient(x, y, horizontal ? width : 0, horizontal ? 0 : height);
   const blackGrd = ctx.createLinearGradient(x, y, horizontal ? 0 : width, horizontal ? height : 0);
   //Color
@@ -153,17 +157,18 @@ export const initColors = (canvas: HTMLCanvasElement, options: Required<ColorPic
     gradientHeight
   } = parseParamsByPosition(width, height, space, hue);
 
- // console.log(parseParamsByPosition(width, height, space || 10, hue));
+  console.log(parseParamsByPosition(width, height, space || 10, hue));
+
+
+  // canvas.height = height;
+  // canvas.width = width;
 
   const ctx = canvas.getContext("2d",
     { alpha: false, willReadFrequently: true }) as CanvasRenderingContext2D;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   canvas.onclick = (e) => {
-    console.log(e.offsetX, e.offsetY, width, );
-    const XCheck = e.offsetX >= (width - ((space * 2) + (space / 2))) && e.offsetX < (width - space);
-    const YCheck = e.offsetY >= (height - ((space * 2) + (space / 2))) && e.offsetY < (height - space);
-    const grd = !horizontal ? XCheck : YCheck;
+    const grd = !horizontal ? e.offsetX >= (gradientWidth) : e.offsetY >= gradientHeight;
     if (grd) {
       drawGradient(ctx, getColor(ctx, e).rgb, gradientX, gradientY, gradientWidth, gradientHeight, horizontal);
     } else {
